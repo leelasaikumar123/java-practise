@@ -17,5 +17,8 @@ public class LineComparison {
         double lineTwoHeight=Math.sqrt(Math.pow((x4-x3),2)+Math.pow((y4-y3),2));
         System.out.println("The Height of Line one is : "+lineOneHeight);
         System.out.println("the height of second line is : "+lineTwoHeight);
+        if(Double.valueOf(lineOneHeight).equals(Double.valueOf(lineTwoHeight))){
+            System.out.println("Both Lines Are Equal");
+        }
     }
 }
