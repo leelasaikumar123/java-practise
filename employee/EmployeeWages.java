@@ -20,9 +20,13 @@ public class EmployeeWages {
         public static void wagesForFullTime(){
         System.out.println("The Monthly Salary Of An Full Time Employee is : "+(20*8*20));
     }
+    public static void wagesForPartTime(){
+        System.out.println("The Monthly Salary Of An Part Time Employee is : "+(20*4*20));
+    }
 
     public static void main(String[] args) {
         isEmplyeePresentOrNot();
         wagesForFullTime();
+        wagesForPartTime();
     }
 }
