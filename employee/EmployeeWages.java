@@ -17,8 +17,12 @@ public class EmployeeWages {
            System.out.println("The employee is absent on "+day); 
         }
     }
+        public static void wagesForFullTime(){
+        System.out.println("The Monthly Salary Of An Full Time Employee is : "+(20*8*20));
+    }
 
     public static void main(String[] args) {
         isEmplyeePresentOrNot();
+        wagesForFullTime();
     }
 }
