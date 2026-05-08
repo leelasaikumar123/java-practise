@@ -1,0 +1,24 @@
+package employee;
+
+import java.util.Random;
+
+public class EmployeeWages {
+   static Random random=new Random();
+    static{
+        System.out.println("welcome to employee wages computation program");
+    }
+    public static void isEmplyeePresentOrNot(){
+        int num=random.nextInt(2);
+        int day=random.nextInt(20)+1;
+        if(num==1){
+            System.out.println("The employee is present on "+day);
+        }
+        else{
+           System.out.println("The employee is absent on "+day); 
+        }
+    }
+
+    public static void main(String[] args) {
+        isEmplyeePresentOrNot();
+    }
+}
