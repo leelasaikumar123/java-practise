@@ -20,5 +20,15 @@ public class LineComparison {
         if(Double.valueOf(lineOneHeight).equals(Double.valueOf(lineTwoHeight))){
             System.out.println("Both Lines Are Equal");
         }
+        int value=Double.valueOf(lineOneHeight).compareTo(Double.valueOf(lineTwoHeight));
+        if(value>0){
+            System.out.println("Line one is bigger");
+        }
+        else if(value==0){
+            System.out.println("Both lines are equal");
+        }
+        else{
+            System.out.println("Line is IS bigger");
+        }
     }
 }
