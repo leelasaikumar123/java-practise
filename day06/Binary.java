@@ -24,6 +24,23 @@ public class Binary {
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
         int num=sc.nextInt();
-     System.out.println("The Binary Number of : "+num+" is : "+toBinary(num));   
+     System.out.println("The Binary Number of : "+num+" is : "+toBinary(num)); 
+     System.out.println(swapNibbles(toBinary(num)));
+    }
+    public static int swapNibbles(String s){
+    String padStart="";
+for(int i=0;i<(8-s.length());i++){
+padStart=padStart+0;
+}   
+s=padStart+s;
+System.out.println(s);
+s=s.substring(4)+s.substring(0, 4);
+int num=0;
+int power=0;
+for(int i=s.length()-1;i>=0;i--){
+    num=num+(int)Math.pow(2,power)*(s.charAt(i)-48);
+    power++;
+}
+        return num;
     }
 }
