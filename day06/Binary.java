@@ -41,6 +41,9 @@ for(int i=s.length()-1;i>=0;i--){
     num=num+(int)Math.pow(2,power)*(s.charAt(i)-48);
     power++;
 }
+if(s.charAt(0)=='1'){
+    System.out.println("The Number can be expressed power of 2");
+}
         return num;
     }
 }
