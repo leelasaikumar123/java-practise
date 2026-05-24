@@ -53,5 +53,11 @@ public class UserRegistration {
     else{
         System.out.println("Password should have at least one capital letter");
     }
+    if(password.matches("^(?=.*[A-Z])(?=.*[0-9]).{8,}$")){
+      System.out.println("Password has one numeric character");
+    }
+    else{
+        System.out.println("Password should have at least one numeric letter");
+    }
     }
 }
