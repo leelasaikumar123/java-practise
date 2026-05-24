@@ -47,5 +47,11 @@ public class UserRegistration {
     else{
         System.out.println("Password should have 8 characters");
     }
+        if(password.matches("^(?=.*[A-Z]).{8,}$")){
+  System.out.println("Its Following The Regular Expression");
+    }
+    else{
+        System.out.println("Password should have at least one capital letter");
+    }
     }
 }
