@@ -13,5 +13,13 @@ public class UserRegistration {
     else{
         System.out.println("The first name should start with a capital letter and has min size of 3 characters");
     }
+    System.out.println("enter last name");
+    String lastName=sc.nextLine();
+    if(lastName.matches("[A-Z][a-z]{2,}")){
+    System.out.println("Its Following The Regular Expression");
+    }
+    else{
+        System.out.println("The last name should start with a capital letter and has min size of 3 characters");
+    }
     }
 }
