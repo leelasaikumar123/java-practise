@@ -31,5 +31,13 @@ public class UserRegistration {
                         "& co) and 2 optional (xyz & in) with\r\n" + //
                         "precise @ and . positions");
     }
+    System.out.println("enter phone number first country code space and next 10 digits");
+    String phoneNumber=sc.nextLine();
+        if(phoneNumber.matches("[0-9]{2}\\s[6789][0-9]{9}")){
+    System.out.println("Its Following The Regular Expression");
+    }
+    else{
+        System.out.println("The phone number starts with country code and followed by 10 digits");
+    }
     }
 }
