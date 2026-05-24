@@ -39,5 +39,13 @@ public class UserRegistration {
     else{
         System.out.println("The phone number starts with country code and followed by 10 digits");
     }
+    System.out.println("enter password");
+    String password=sc.nextLine();
+    if(password.matches(".{8,}")){
+  System.out.println("Its Following The Regular Expression");
+    }
+    else{
+        System.out.println("Password should have 8 characters");
+    }
     }
 }
