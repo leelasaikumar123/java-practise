@@ -21,5 +21,15 @@ public class UserRegistration {
     else{
         System.out.println("The last name should start with a capital letter and has min size of 3 characters");
     }
+    System.out.println("enter email");
+    String email=sc.nextLine();
+        if(email.matches("[a-z]{3,}([.][a-z]{3,})?@[a-z]{2,}\\.[a-z]{2,}([.][a-z]{2,})?")){
+    System.out.println("Its Following The Regular Expression");
+    }
+    else{
+        System.out.println("the email should follow E.g. abc.xyz@bl.co.in - Email has 3 mandatory parts (abc, bl\r\n" + //
+                        "& co) and 2 optional (xyz & in) with\r\n" + //
+                        "precise @ and . positions");
+    }
     }
 }
