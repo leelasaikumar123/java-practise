@@ -59,5 +59,18 @@ public class UserRegistration {
     else{
         System.out.println("Password should have at least one numeric letter");
     }
+        if(password.matches("^(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{8,}$")){
+      System.out.println("Password has one special  character");
+    }
+    else{
+        System.out.println("Password should have at least one special letter");
+    }
+    System.out.println("enter an email from the file");
+    if(sc.next().matches("^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9]+[._+-]?[A-Za-z0-9]+)*@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,6}$")){
+        System.out.println("its obeying regular expression");
+    }
+    else{
+        System.out.println("the regular expression is wrong");
+    }
     }
 }
