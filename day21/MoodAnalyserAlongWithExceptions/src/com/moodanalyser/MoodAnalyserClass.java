@@ -25,6 +25,18 @@ public class MoodAnalyserClass {
 	else {
 		return "HAPPY";
 	}
+	}
+	    public String analyseMoodUsingInstanceVariableAddindExceptions() {
+try {
+		if(message.contains("sad")) {
+		return "SAD";
+	}
+	else {
+		return "HAPPY";
+	}
+} catch (Exception e) {
+	return "HAPPY";
+}
 	}	
 }
 
