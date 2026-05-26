@@ -29,6 +29,6 @@ class MoodAnalyserClassTest {
    @Test
    void passingNullAsTheMessage(){
 	MoodAnalyserClass moodanalyser=new MoodAnalyserClass(null);
-	assertEquals("HAPPY",moodanalyser.analyseMoodUsingInstanceVariableAddindExceptions()); 
+	assertThrows(MoodAnalysisException.class,()->moodanalyser.analyseMoodUsingInstanceVariableAddindExceptions()); 
    }
 }

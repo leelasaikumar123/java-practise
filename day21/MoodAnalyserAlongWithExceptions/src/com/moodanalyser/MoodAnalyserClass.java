@@ -26,7 +26,8 @@ public class MoodAnalyserClass {
 		return "HAPPY";
 	}
 	}
-	    public String analyseMoodUsingInstanceVariableAddindExceptions() {
+
+	public String analyseMoodUsingInstanceVariableAddindExceptions() throws MoodAnalysisException {
 try {
 		if(message.contains("sad")) {
 		return "SAD";
@@ -35,7 +36,7 @@ try {
 		return "HAPPY";
 	}
 } catch (Exception e) {
-	return "HAPPY";
+	throw new MoodAnalysisException("User Must pass a value");
 }
 	}	
 }
