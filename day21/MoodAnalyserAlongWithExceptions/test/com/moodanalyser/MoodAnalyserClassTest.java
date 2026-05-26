@@ -9,7 +9,7 @@ class MoodAnalyserClassTest {
 	@Test
 	void test() {
 		MoodAnalyserClass moodanalyser=new MoodAnalyserClass();		
-		System.out.println(moodanalyser.analyseMood("i'm in a sad mood"));
+		assertEquals("SAD",moodanalyser.analyseMood("i'm very sad today"));
 	}
 
 }
