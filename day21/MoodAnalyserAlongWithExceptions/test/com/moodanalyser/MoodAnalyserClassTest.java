@@ -16,5 +16,10 @@ class MoodAnalyserClassTest {
 		MoodAnalyserClass moodanalyser=new MoodAnalyserClass();		
 		assertEquals("HAPPY",moodanalyser.analyseMood("i'm in any mood"));  
    }
+   	@Test
+   void passingMessageInTheConstructor() {
+		MoodAnalyserClass moodanalyser=new MoodAnalyserClass("i'm in a sad mood");		
+		assertEquals("SAD",moodanalyser.analyseMoodUsingInstanceVariable());  
+   }
 
 }
