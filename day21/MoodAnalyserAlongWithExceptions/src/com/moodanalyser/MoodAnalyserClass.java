@@ -39,5 +39,23 @@ try {
 	throw new MoodAnalysisException("User Must pass a value");
 }
 	}	
+	public String analyseMoodUsingInstanceVariableAddingExceptions()
+			throws MoodAnalysisException {
+		try {
+			if (message.length() == 0) {
+				throw new MoodAnalysisException("EMPTY MOOD");
+			}
+			if (message.contains("sad")) {
+				return "SAD";
+			}
+			else {
+				return "HAPPY";
+			}
+
+		}
+		catch (NullPointerException e) {
+			throw new MoodAnalysisException("NULL MOOD");
+		}
+	}
 }
 

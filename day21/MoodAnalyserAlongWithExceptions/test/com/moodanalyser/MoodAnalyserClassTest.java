@@ -31,4 +31,15 @@ class MoodAnalyserClassTest {
 	MoodAnalyserClass moodanalyser=new MoodAnalyserClass(null);
 	assertThrows(MoodAnalysisException.class,()->moodanalyser.analyseMoodUsingInstanceVariableAddindExceptions()); 
    }
+   @Test
+void passingNullMoodShouldThrowException() {
+	try {
+		MoodAnalyserClass mood =
+				new MoodAnalyserClass(null);
+		mood.analyseMoodUsingInstanceVariableAddingExceptions();
+	}
+	catch (MoodAnalysisException e) {
+		assertEquals("NULL MOOD", e.getMessage());
+	}
+}
 }
