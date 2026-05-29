@@ -13,7 +13,7 @@ class UserValidationTest {
 	UserValidation validation=new UserValidation();
 	boolean result;
 	try {
-		result = validation.firstNameStartWithCapitalLetterAndMinSizeOf3("Leela");
+		result=validation.firstNameStartWithCapitalLetterAndMinSizeOf3.getResult("Leela");
 		assertEquals(true, result);
 	} catch (UserValidationExceptions e) {
 	fail("Invalid First Name");
@@ -26,7 +26,7 @@ class UserValidationTest {
 	UserValidation validation=new UserValidation();
 	boolean result;
 	try {
-		result = validation.lastNameStartWithCapitalLetterAndMinSizeOf3("Meda");
+		result = validation.lastNameStartWithCapitalLetterAndMinSizeOf3.getResult("Meda");
 		assertEquals(true, result);
 	} catch (UserValidationExceptions e) {
    fail("Invalid Last Name");
@@ -39,7 +39,7 @@ class UserValidationTest {
 	UserValidation validation=new UserValidation();
 	boolean result;
 	try {
-		result = validation.emailValidation("abc.xyz@bl.co.in");
+		result = validation.emailValidation.getResult("abc.xyz@bl.co.in");
 		assertEquals(true, result);
 	} catch (UserValidationExceptions e) {
 	fail("Invalid Email");
@@ -51,7 +51,7 @@ class UserValidationTest {
 	UserValidation validation=new UserValidation();
 	boolean result;
 	try {
-		result = validation.phoneNumberValidation("91 9381822209");
+		result = validation.phoneNumberValidation.getResult("91 9381822209");
 		assertEquals(true, result);
 	} catch (UserValidationExceptions e) {
 fail("Invalid Mobile Number");
@@ -64,7 +64,7 @@ fail("Invalid Mobile Number");
 	UserValidation validation=new UserValidation();
 	boolean result;
 	try {
-		result = validation.passwordHasMinOf8characters("Tanuja Naidu");
+		result = validation.passwordValidation.getResult("Tanuja Naidu");
 		assertEquals(true, result);
 	} catch (UserValidationExceptions e) {
 fail("Invalid Password");
@@ -76,7 +76,7 @@ fail("Invalid Password");
 	UserValidation validation=new UserValidation();
 	boolean result;
 	try {
-		result = validation.passwordHasMinOf8charactersAndHasMin1CapitalLetter("Tanuja Naidu");
+		result = validation.passwordHasMinOf8charactersAndHasMin1CapitalLetter.getResult("Tanuja Naidu");
 		assertEquals(true, result);
 	} catch (UserValidationExceptions e) {
    fail("Password must contain minimum 8 characters and 1 capital letter");
@@ -88,7 +88,7 @@ fail("Invalid Password");
 	UserValidation validation=new UserValidation();
 	boolean result;
 	try {
-		result = validation.passwordHasMinOf8charactersAndHasMin1NumericLetter("Tanuja Naidu1");
+		result = validation.passwordHasMinOf8charactersAndHasMin1NumericLetter.getResult("Tanuja Naidu1");
 		assertEquals(true, result);
 	} catch (UserValidationExceptions e) {
 	fail("Password must contain minimum 8 characters and 1 numeric character");
@@ -100,7 +100,7 @@ fail("Invalid Password");
 	UserValidation validation=new UserValidation();
 	boolean result;
 	try {
-		result = validation.passwordHasMinOf8charactersAndSpecialCharacter("Tanuja@Naidu1");
+		result = validation.passwordHasMinOf8charactersAndSpecialCharacter.getResult("Tanuja@Naidu1");
 		assertEquals(true, result);
 	} catch (UserValidationExceptions e) {
 	  fail("Password must contain minimum 8 characters and 1 special character");
@@ -111,7 +111,7 @@ fail("Invalid Password");
 	UserValidation validation=new UserValidation();
 	boolean result;
 	try {
-		result = validation.passwordHasMinOf8charactersAndSpecialCharacterAndOneCapitalletterandOneNumericCharacter("Tanuja@Naidu1");
+		result = validation.passwordHasMinOf8charactersAndSpecialCharacterAndOneCapitalletterandOneNumericCharacter.getResult("Tanuja@Naidu1");
 		assertEquals(true, result);
 	} catch (UserValidationExceptions e) {
     fail("Invalid Password");
@@ -130,7 +130,7 @@ fail("Invalid Password");
 		UserValidation validation=new UserValidation();
 		boolean actual;
 		try {
-			actual = validation.testingNNumberOfEmailsUsingParameterizedTest(email);
+			actual = validation.testingNNumberOfEmailsUsingParameterizedTest.getResult(email);
 			assertEquals(expected,actual);
 		} catch (UserValidationExceptions e) {
  assertEquals(false, expected);
