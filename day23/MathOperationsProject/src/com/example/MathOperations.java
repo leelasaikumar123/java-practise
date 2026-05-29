@@ -2,6 +2,7 @@ package com.example;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 public class MathOperations{
 
@@ -13,7 +14,7 @@ public class MathOperations{
         Calculation subpraction = (x, y) -> x - y;
         return Calculation.calculateResult(a,b,subpraction);
     }
-         public int mul(int a, int b) {
+        public int mul(int a, int b) {
         Calculation multiplication = (x, y) -> x * y;
        return Calculation.calculateResult(a,b,multiplication);
     }
@@ -31,6 +32,8 @@ public static void main(String[] args) {
      printListUsingLambdaFunction(Arrays.asList(1,2,3,4,5,6,7,8,9));
      System.out.println();
      convertionOfIntergersToDoubles(Arrays.asList(1,2,3,4,5,6,7,8,9));
+     System.out.println();
+     printEvenNumbersUsingPredicate(Arrays.asList(1,2,3,4,5,6,7,8,9));
     }
     public static void printListUsingClass(List<Integer> list){
     list.forEach(new ConsumerData());
@@ -60,6 +63,14 @@ Function<Integer,Double> function=a -> a*1.0;
 list.forEach(n->{
     System.out.println("The Double of N is "+function.apply(n));
 });
+}
+public static void printEvenNumbersUsingPredicate(List<Integer> list){
+    Predicate<Integer> predicate=a->a%2==0;
+    for(int num:list){
+        if(predicate.test(num)){
+            System.out.println(num+" is an even number");
+        }
+    }
 }
 }
 interface Calculation{
