@@ -1,6 +1,7 @@
 package com.example;
 import java.util.*;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class MathOperations{
 
@@ -28,6 +29,8 @@ public static void main(String[] args) {
      printListUsingAnonomousClass(Arrays.asList(1,2,3,4,5,6,7,8,9));
      System.out.println();
      printListUsingLambdaFunction(Arrays.asList(1,2,3,4,5,6,7,8,9));
+     System.out.println();
+     convertionOfIntergersToDoubles(Arrays.asList(1,2,3,4,5,6,7,8,9));
     }
     public static void printListUsingClass(List<Integer> list){
     list.forEach(new ConsumerData());
@@ -51,6 +54,12 @@ public static void printListUsingAnonomousClass(List<Integer> list){
 public static void printListUsingLambdaFunction(List<Integer> list){
     Consumer<Integer> consumer=num->{System.out.print(num+" ");};
     list.forEach(consumer);
+}
+public static void convertionOfIntergersToDoubles(List<Integer> list){
+Function<Integer,Double> function=a -> a*1.0;
+list.forEach(n->{
+    System.out.println("The Double of N is "+function.apply(n));
+});
 }
 }
 interface Calculation{

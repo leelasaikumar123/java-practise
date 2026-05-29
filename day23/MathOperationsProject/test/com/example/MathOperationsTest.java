@@ -49,4 +49,9 @@ class MathOperationsTest {
 	 List<Integer> list=Arrays.asList(1,2,3,4,5,6,7,8,9);
 	  MathOperations.printListUsingLambdaFunction(list);	
 	}
+	@Test
+	void convertionOfIntergersToDoubles(){
+	 List<Integer> list=Arrays.asList(1,2,3,4,5,6,7,8,9);
+	  MathOperations.convertionOfIntergersToDoubles(list);	
+	}
 }
