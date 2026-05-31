@@ -2,6 +2,7 @@ package src.day24;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class StreamAPI{
@@ -11,5 +12,8 @@ public class StreamAPI{
     List<Double> list2=list.stream().map(n->n*1.0).collect(Collectors.toList()); 
     list2.forEach(System.out::println);
     list.stream().filter(n->n%2==0).forEach(System.out::println);
+    System.out.println("First even number in the stream");
+      Optional<Integer> opt=list.stream().filter(n->n%2==0).findFirst();
+    System.out.println(opt.get());
     }
 }
