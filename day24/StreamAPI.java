@@ -19,5 +19,9 @@ public class StreamAPI{
   System.out.println("The min value in the stream is "+min.get());
   Optional<Integer> max=list.stream().max((a,b)->a.compareTo(b));
   System.out.println("The max value in the stream is "+max.get());
+  Optional<Integer> sum=list.stream().reduce((a,b)->a+b);
+  long size=list.stream().count();
+  System.out.println("The sum of stream is "+sum.get());
+  System.out.println("The avg of stream is "+sum.get()/size);
     }
 }
