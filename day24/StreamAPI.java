@@ -10,5 +10,6 @@ public class StreamAPI{
        list.stream().forEach(System.out::println); 
     List<Double> list2=list.stream().map(n->n*1.0).collect(Collectors.toList()); 
     list2.forEach(System.out::println);
+    list.stream().filter(n->n%2==0).forEach(System.out::println);
     }
 }
