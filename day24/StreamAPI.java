@@ -15,5 +15,9 @@ public class StreamAPI{
     System.out.println("First even number in the stream");
       Optional<Integer> opt=list.stream().filter(n->n%2==0).findFirst();
     System.out.println(opt.get());
+    Optional<Integer> min=list.stream().min((a,b)->a.compareTo(b));
+  System.out.println("The min value in the stream is "+min.get());
+  Optional<Integer> max=list.stream().max((a,b)->a.compareTo(b));
+  System.out.println("The max value in the stream is "+max.get());
     }
 }
