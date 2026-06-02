@@ -23,5 +23,6 @@ public class StreamAPI{
   long size=list.stream().count();
   System.out.println("The sum of stream is "+sum.get());
   System.out.println("The avg of stream is "+sum.get()/size);
-    }
+  list.sorted().forEach(system.out::println);
+      }
 }
