@@ -21,9 +21,9 @@ public class HotelReservation {
         // flag = sc.nextBoolean();
         // sc.nextLine();
         // }
-        list.add(new Hotel("LakeWood", 90, 110));
-        list.add(new Hotel("BridgeWood", 50, 150));
-        list.add(new Hotel("RidgeWood", 150, 220));
+        list.add(new Hotel("LakeWood", 90, 110,3));
+        list.add(new Hotel("BridgeWood", 50, 150,4));
+        list.add(new Hotel("RidgeWood", 150, 220,5));
         System.out.println("enter checkin date");
         String checkIn = sc.nextLine();
         System.out.println("enter checkout date ");
@@ -136,11 +136,12 @@ class Hotel {
     private String name;
     private float weekendRate;
     private float weekdayRate;
-
-    public Hotel(String name, float weekendRate, float weekdayRate) {
+    private int rating;
+    public Hotel(String name, float weekendRate, float weekdayRate,int rating) {
         this.name = name;
         this.weekendRate = weekendRate;
         this.weekdayRate = weekdayRate;
+        this.rating=rating;
     }
 
     public String getName() {
@@ -167,4 +168,12 @@ class Hotel {
         this.weekdayRate = weekdayRate;
     }
 
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+  
 }
