@@ -21,9 +21,9 @@ public class HotelReservation {
         // flag = sc.nextBoolean();
         // sc.nextLine();
         // }
-        list.add(new Hotel("LakeWood", 90, 110,3));
-        list.add(new Hotel("BridgeWood", 50, 150,4));
-        list.add(new Hotel("RidgeWood", 150, 220,5));
+        list.add(new Hotel("LakeWood", 90, 110, 3));
+        list.add(new Hotel("BridgeWood", 50, 150, 4));
+        list.add(new Hotel("RidgeWood", 150, 220, 5));
         System.out.println("enter checkin date");
         String checkIn = sc.nextLine();
         System.out.println("enter checkout date ");
@@ -44,6 +44,31 @@ public class HotelReservation {
         cheapestHotel(list, d1, d2);
         System.out.println("Cheap and Best Rated Hotel");
         cheapestHotelAndBestRated(list, d1, d2);
+        System.out.println("The Hotel With Top Rating");
+        Optional<Hotel> hotelWithHighestRatings = hotelWithHighestRating(list);
+        System.out.println(hotelWithHighestRatings.get().getName() + " The ratings are : "
+                + hotelWithHighestRatings.get().getRating() +" Total bill will be :"+billOfTheHotel(d1, d2, hotelWithHighestRatings.get())+"$");
+    }
+
+    public static float billOfTheHotel(LocalDate d1, LocalDate d2,Hotel hotel) {
+        float total = 0;
+
+        LocalDate temp = d1;
+
+        while (!temp.isAfter(d2)) {
+
+            if (temp.getDayOfWeek().getValue() >= 6) {
+
+                total += hotel.getWeekendRate();
+
+            } else {
+
+                total += hotel.getWeekdayRate();
+            }
+
+            temp = temp.plusDays(1);
+        }
+        return total;
     }
 
     public static int findMonth(String month) {
@@ -96,12 +121,16 @@ public class HotelReservation {
     // b.getRate()));
     // return opt;
     // }
+    public static Optional<Hotel> hotelWithHighestRating(ArrayList<Hotel> list) {
+        Optional<Hotel> hotel = list.stream().max((a, b) -> Integer.compare(a.getRating(), b.getRating()));
+        return hotel;
+    }
 
     public static void cheapestHotel(ArrayList<Hotel> list, LocalDate d1, LocalDate d2) {
 
         float min = Float.MAX_VALUE;
         String cheapestHotel = "";
-        LinkedHashMap<Hotel,Float> map=new LinkedHashMap<>();
+        LinkedHashMap<Hotel, Float> map = new LinkedHashMap<>();
         for (Hotel hotel : list) {
 
             float total = 0;
@@ -122,25 +151,26 @@ public class HotelReservation {
                 temp = temp.plusDays(1);
             }
 
-          map.put(hotel, total);
+            map.put(hotel, total);
 
             if (total < min) {
                 cheapestHotel = hotel.getName();
                 min = total;
             }
         }
-                for(Hotel hotel:list){
-          if(Float.compare(map.get(hotel), min) == 0 ){
-            System.out.println("Hotel Name : "+hotel.getName()+" "+"Price : "+min);
-          }
+        for (Hotel hotel : list) {
+            if (Float.compare(map.get(hotel), min) == 0) {
+                System.out.println("Hotel Name : " + hotel.getName() + " " + "Price : " + min);
+            }
         }
-        
+
     }
+
     public static void cheapestHotelAndBestRated(ArrayList<Hotel> list, LocalDate d1, LocalDate d2) {
 
         float min = Float.MAX_VALUE;
         String cheapestHotel = "";
-        LinkedHashMap<Hotel,Float> map=new LinkedHashMap<>();
+        LinkedHashMap<Hotel, Float> map = new LinkedHashMap<>();
         for (Hotel hotel : list) {
 
             float total = 0;
@@ -161,21 +191,22 @@ public class HotelReservation {
                 temp = temp.plusDays(1);
             }
 
-           map.put(hotel, total);
+            map.put(hotel, total);
 
             if (total < min) {
                 min = total;
             }
         }
-        int ratings=Integer.MIN_VALUE;
-        Hotel cheapAndBestRatedRestaurant=null;
-        for(Hotel hotel:list){
-          if(Float.compare(map.get(hotel), min) == 0 && hotel.getRating() > ratings){
-            ratings=hotel.getRating();
-            cheapAndBestRatedRestaurant=hotel;
-          }
+        int ratings = Integer.MIN_VALUE;
+        Hotel cheapAndBestRatedRestaurant = null;
+        for (Hotel hotel : list) {
+            if (Float.compare(map.get(hotel), min) == 0 && hotel.getRating() > ratings) {
+                ratings = hotel.getRating();
+                cheapAndBestRatedRestaurant = hotel;
+            }
         }
-        System.out.println( cheapAndBestRatedRestaurant.getName() + " Total Cost: $" + min+" Ratings : "+cheapAndBestRatedRestaurant.getRating());
+        System.out.println(cheapAndBestRatedRestaurant.getName() + " Total Cost: $" + min + " Ratings : "
+                + cheapAndBestRatedRestaurant.getRating());
     }
 
 }
@@ -185,11 +216,12 @@ class Hotel {
     private float weekendRate;
     private float weekdayRate;
     private int rating;
-    public Hotel(String name, float weekendRate, float weekdayRate,int rating) {
+
+    public Hotel(String name, float weekendRate, float weekdayRate, int rating) {
         this.name = name;
         this.weekendRate = weekendRate;
         this.weekdayRate = weekdayRate;
-        this.rating=rating;
+        this.rating = rating;
     }
 
     public String getName() {
@@ -223,5 +255,5 @@ class Hotel {
     public void setRating(int rating) {
         this.rating = rating;
     }
-  
+
 }
