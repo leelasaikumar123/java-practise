@@ -6,20 +6,23 @@ public class HotelReservation {
     public static void main(String[] args) {
         System.out.println("Welcome to Hotel Reservation Program in javac HotelReservation class");
         ArrayList<Hotel> list = new ArrayList<>();
-        System.out.println("enter the hotel details");
-        boolean flag = true;
-        Scanner sc = new Scanner(System.in);
-        while (flag) {
-            System.out.println("enter the name of the hotel");
-            String hotelname = sc.nextLine();
-            System.out.println("enter its rate per night");
-            float rate = sc.nextFloat();
-            sc.nextLine();
-            list.add(new Hotel(hotelname, rate));
-            System.out.println("if you still want to add another hotel press true or else false");
-            flag = sc.nextBoolean();
-            sc.nextLine();
-        }
+        // System.out.println("enter the hotel details");
+        // boolean flag = true;
+        // Scanner sc = new Scanner(System.in);
+        // while (flag) {
+        //     System.out.println("enter the name of the hotel");
+        //     String hotelname = sc.nextLine();
+        //     System.out.println("enter its rate per night");
+        //     float rate = sc.nextFloat();
+        //     sc.nextLine();
+        //     list.add(new Hotel(hotelname, rate));
+        //     System.out.println("if you still want to add another hotel press true or else false");
+        //     flag = sc.nextBoolean();
+        //     sc.nextLine();
+        // }
+        list.add(new Hotel("LakeWood", 110, 90));
+        list.add(new Hotel("BridgeWood", 150, 50));
+        list.add(new Hotel("LakeWood", 220, 150));
         System.out.println("enter checkin date");
         String checkIn = sc.nextLine();
         System.out.println("enter checkout date ");
@@ -93,30 +96,45 @@ switch(month){
 
 class Hotel {
     private String name;
-    private float rate;
+    private float weekendRate;
+    private float weekdayRate;
 
-    public Hotel(String name, float rate) {
+
+    public Hotel(String name, float weekendRate, float weekdayRate) {
         this.name = name;
-        this.rate = rate;
+        this.weekendRate = weekendRate;
+        this.weekdayRate = weekdayRate;
     }
+
 
     public String getName() {
         return name;
     }
 
+
     public void setName(String name) {
         this.name = name;
     }
 
-    public float getRate() {
-        return rate;
+
+    public float getWeekendRate() {
+        return weekendRate;
     }
 
-    public void setRate(float rate) {
-        this.rate = rate;
+
+    public void setWeekendRate(float weekendRate) {
+        this.weekendRate = weekendRate;
     }
 
-    public String toString() {
-        return "name :" + name + " price: " + rate;
+
+    public float getWeekdayRate() {
+        return weekdayRate;
     }
+
+
+    public void setWeekdayRate(float weekdayRate) {
+        this.weekdayRate = weekdayRate;
+    }
+
+   
 }
