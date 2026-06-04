@@ -21,9 +21,9 @@ public class HotelReservation {
         // flag = sc.nextBoolean();
         // sc.nextLine();
         // }
-        list.add(new Hotel("LakeWood", 90, 110,80,80,3));
-        list.add(new Hotel("BridgeWood", 50, 150, 110,50,4));
-        list.add(new Hotel("RidgeWood", 150, 220,100,40,5));
+list.add(new Hotel("LakeWood", 110, 90, 80, 80, 3));
+list.add(new Hotel("BridgeWood", 150, 50, 110, 50, 4));
+list.add(new Hotel("RidgeWood", 220, 150, 100, 40, 5));
         System.out.println("enter checkin date");
         String checkIn = sc.nextLine();
         System.out.println("enter checkout date ");
@@ -48,6 +48,8 @@ public class HotelReservation {
         Optional<Hotel> hotelWithHighestRatings = hotelWithHighestRating(list);
         System.out.println(hotelWithHighestRatings.get().getName() + " The ratings are : "
                 + hotelWithHighestRatings.get().getRating() +" Total bill will be :"+billOfTheHotel(d1, d2, hotelWithHighestRatings.get())+"$");
+      System.out.println("Cheap and Best Rated Hotel For Reward Customer");    
+      cheapestHotelAndBestRatedForRewardCustomers(list, d1, d2);      
     }
 
     public static float billOfTheHotel(LocalDate d1, LocalDate d2,Hotel hotel) {
@@ -209,6 +211,50 @@ public class HotelReservation {
                 + cheapAndBestRatedRestaurant.getRating());
     }
 
+
+    public static void cheapestHotelAndBestRatedForRewardCustomers(ArrayList<Hotel> list, LocalDate d1, LocalDate d2) {
+
+        float min = Float.MAX_VALUE;
+        String cheapestHotel = "";
+        LinkedHashMap<Hotel, Float> map = new LinkedHashMap<>();
+        for (Hotel hotel : list) {
+
+            float total = 0;
+
+            LocalDate temp = d1;
+
+            while (!temp.isAfter(d2)) {
+
+                if (temp.getDayOfWeek().getValue() >= 6) {
+
+                    total += hotel.getRewardCustomerWeekendRate();
+
+                } else {
+
+                    total += hotel.getRewardCustomerWeekdayRate();
+
+                }
+
+                temp = temp.plusDays(1);
+            }
+
+            map.put(hotel, total);
+
+            if (total < min) {
+                min = total;
+            }
+        }
+        int ratings = Integer.MIN_VALUE;
+        Hotel cheapAndBestRatedRestaurant = null;
+        for (Hotel hotel : list) {
+            if (Float.compare(map.get(hotel), min) == 0 && hotel.getRating() > ratings) {
+                ratings = hotel.getRating();
+                cheapAndBestRatedRestaurant = hotel;
+            }
+        }
+        System.out.println(cheapAndBestRatedRestaurant.getName() + " Total Cost: $" + min + " Ratings : "
+                + cheapAndBestRatedRestaurant.getRating());
+    }
 }
 
 class Hotel {
