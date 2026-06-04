@@ -21,9 +21,9 @@ public class HotelReservation {
         // flag = sc.nextBoolean();
         // sc.nextLine();
         // }
-        list.add(new Hotel("LakeWood", 90, 110, 3));
-        list.add(new Hotel("BridgeWood", 50, 150, 4));
-        list.add(new Hotel("RidgeWood", 150, 220, 5));
+        list.add(new Hotel("LakeWood", 90, 110,80,80,3));
+        list.add(new Hotel("BridgeWood", 50, 150, 110,50,4));
+        list.add(new Hotel("RidgeWood", 150, 220,100,40,5));
         System.out.println("enter checkin date");
         String checkIn = sc.nextLine();
         System.out.println("enter checkout date ");
@@ -215,12 +215,17 @@ class Hotel {
     private String name;
     private float weekendRate;
     private float weekdayRate;
+    private float rewardCustomerWeekdayRate;
+    private float rewardCustomerWeekendRate;
     private int rating;
 
-    public Hotel(String name, float weekendRate, float weekdayRate, int rating) {
+    public Hotel(String name, float weekendRate, float weekdayRate, float rewardCustomerWeekdayRate,
+            float rewardCustomerWeekendRate, int rating) {
         this.name = name;
         this.weekendRate = weekendRate;
         this.weekdayRate = weekdayRate;
+        this.rewardCustomerWeekdayRate = rewardCustomerWeekdayRate;
+        this.rewardCustomerWeekendRate = rewardCustomerWeekendRate;
         this.rating = rating;
     }
 
@@ -254,6 +259,22 @@ class Hotel {
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    public float getRewardCustomerWeekdayRate() {
+        return rewardCustomerWeekdayRate;
+    }
+
+    public void setRewardCustomerWeekdayRate(float rewardCustomerWeekdayRate) {
+        this.rewardCustomerWeekdayRate = rewardCustomerWeekdayRate;
+    }
+
+    public float getRewardCustomerWeekendRate() {
+        return rewardCustomerWeekendRate;
+    }
+
+    public void setRewardCustomerWeekendRate(float rewardCustomerWeekendRate) {
+        this.rewardCustomerWeekendRate = rewardCustomerWeekendRate;
     }
 
 }
