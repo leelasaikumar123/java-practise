@@ -21,13 +21,22 @@ public class HotelReservation {
         // flag = sc.nextBoolean();
         // sc.nextLine();
         // }
-list.add(new Hotel("LakeWood", 110, 90, 80, 80, 3));
-list.add(new Hotel("BridgeWood", 150, 50, 110, 50, 4));
-list.add(new Hotel("RidgeWood", 220, 150, 100, 40, 5));
-        System.out.println("enter checkin date");
-        String checkIn = sc.nextLine();
-        System.out.println("enter checkout date ");
-        String checkOut = sc.nextLine();
+        list.add(new Hotel("LakeWood", 110, 90, 80, 80, 3));
+        list.add(new Hotel("BridgeWood", 150, 50, 110, 50, 4));
+        list.add(new Hotel("RidgeWood", 220, 150, 100, 40, 5));
+        String checkIn =null;
+        String checkOut=null;
+        try {
+
+            System.out.println("enter checkin date");
+             checkIn = sc.nextLine();
+            System.out.println("enter checkout date ");
+            checkOut = sc.nextLine();
+            validateDate(checkIn);
+            validateDate(checkOut);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
         int checkInDay = Integer.parseInt(checkIn.substring(0, 2));
         int checkInMonth = findMonth(checkIn.substring(2, 5));
         int checkInYear = Integer.parseInt(checkIn.substring(5));
@@ -47,12 +56,14 @@ list.add(new Hotel("RidgeWood", 220, 150, 100, 40, 5));
         System.out.println("The Hotel With Top Rating");
         Optional<Hotel> hotelWithHighestRatings = hotelWithHighestRating(list);
         System.out.println(hotelWithHighestRatings.get().getName() + " The ratings are : "
-                + hotelWithHighestRatings.get().getRating() +" Total bill will be :"+billOfTheHotel(d1, d2, hotelWithHighestRatings.get())+"$");
-      System.out.println("Cheap and Best Rated Hotel For Reward Customer");    
-      cheapestHotelAndBestRatedForRewardCustomers(list, d1, d2);      
+                + hotelWithHighestRatings.get().getRating() + " Total bill will be :"
+                + billOfTheHotel(d1, d2, hotelWithHighestRatings.get()) + "$");
+        System.out.println("Cheap and Best Rated Hotel For Reward Customer");
+        cheapestHotelAndBestRatedForRewardCustomers(list, d1, d2);
+        cheapestHotelAndBestRatedForRewardCustomersUsingStreams(list, d1, d2);
     }
 
-    public static float billOfTheHotel(LocalDate d1, LocalDate d2,Hotel hotel) {
+    public static float billOfTheHotel(LocalDate d1, LocalDate d2, Hotel hotel) {
         float total = 0;
 
         LocalDate temp = d1;
@@ -211,7 +222,6 @@ list.add(new Hotel("RidgeWood", 220, 150, 100, 40, 5));
                 + cheapAndBestRatedRestaurant.getRating());
     }
 
-
     public static void cheapestHotelAndBestRatedForRewardCustomers(ArrayList<Hotel> list, LocalDate d1, LocalDate d2) {
 
         float min = Float.MAX_VALUE;
@@ -254,6 +264,54 @@ list.add(new Hotel("RidgeWood", 220, 150, 100, 40, 5));
         }
         System.out.println(cheapAndBestRatedRestaurant.getName() + " Total Cost: $" + min + " Ratings : "
                 + cheapAndBestRatedRestaurant.getRating());
+    }
+
+    public static void validateDate(String date) {
+
+        String regex = "^[0-9]{2}[A-Z][a-z]{2}[0-9]{4}$";
+
+        if (!date.matches(regex)) {
+
+            throw new IllegalArgumentException(
+                    "Invalid Date Format. Use format like 11Sep2020");
+        }
+    }
+
+    public static void cheapestHotelAndBestRatedForRewardCustomersUsingStreams(ArrayList<Hotel> list, LocalDate d1,
+            LocalDate d2) {
+
+        Optional<Hotel> hotel = list.stream()
+                .min((h1, h2) -> {
+
+                    float total1 = billForRewardCustomer(d1, d2, h1);
+                    float total2 = billForRewardCustomer(d1, d2, h2);
+
+                    if (Float.compare(total1, total2) == 0) {
+                        return Integer.compare(h2.getRating(), h1.getRating());
+                    }
+
+                    return Float.compare(total1, total2);
+                });
+
+        if (hotel.isPresent()) {
+            Hotel h = hotel.get();
+            System.out.println(h.getName()
+                    + " Total Cost: $" + billForRewardCustomer(d1, d2, h) + " Ratings : " + h.getRating());
+        }
+    }
+
+    public static float billForRewardCustomer(LocalDate d1, LocalDate d2, Hotel hotel) {
+        float total = 0;
+        LocalDate temp = d1;
+        while (!temp.isAfter(d2)) {
+            if (temp.getDayOfWeek().getValue() >= 6) {
+                total += hotel.getRewardCustomerWeekendRate();
+            } else {
+                total += hotel.getRewardCustomerWeekdayRate();
+            }
+            temp = temp.plusDays(1);
+        }
+        return total;
     }
 }
 
