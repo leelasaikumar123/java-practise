@@ -24,12 +24,12 @@ public class HotelReservation {
         list.add(new Hotel("LakeWood", 110, 90, 80, 80, 3));
         list.add(new Hotel("BridgeWood", 150, 50, 110, 50, 4));
         list.add(new Hotel("RidgeWood", 220, 150, 100, 40, 5));
-        String checkIn =null;
-        String checkOut=null;
+        String checkIn = null;
+        String checkOut = null;
         try {
 
             System.out.println("enter checkin date");
-             checkIn = sc.nextLine();
+            checkIn = sc.nextLine();
             System.out.println("enter checkout date ");
             checkOut = sc.nextLine();
             validateDate(checkIn);
@@ -61,6 +61,7 @@ public class HotelReservation {
         System.out.println("Cheap and Best Rated Hotel For Reward Customer");
         cheapestHotelAndBestRatedForRewardCustomers(list, d1, d2);
         cheapestHotelAndBestRatedForRewardCustomersUsingStreams(list, d1, d2);
+        cheapestBestRatedRegularCustomer(list, d1, d2);
     }
 
     public static float billOfTheHotel(LocalDate d1, LocalDate d2, Hotel hotel) {
@@ -312,6 +313,24 @@ public class HotelReservation {
             temp = temp.plusDays(1);
         }
         return total;
+    }
+
+    public static void cheapestBestRatedRegularCustomer(ArrayList<Hotel> list, LocalDate d1, LocalDate d2) {
+        Optional<Hotel> hotel = list.stream()
+                .min((h1, h2) -> {
+                    float total1 = billOfTheHotel(d1, d2, h1);
+                    float total2 = billOfTheHotel(d1, d2, h2);
+                    if (Float.compare(total1, total2) == 0) {
+                        return Integer.compare(h2.getRating(), h1.getRating());
+                    }
+                    return Float.compare(total1, total2);
+                });
+
+        if (hotel.isPresent()) {
+            Hotel h = hotel.get();
+            System.out.println(
+                    h.getName() + ", Rating: " + h.getRating() + " and Total Rates: $" + billOfTheHotel(d1, d2, h));
+        }
     }
 }
 
