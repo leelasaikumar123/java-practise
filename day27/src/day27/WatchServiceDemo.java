@@ -9,7 +9,6 @@ import java.nio.file.StandardWatchEventKinds;
 import java.nio.file.WatchEvent;
 import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
-
 public class WatchServiceDemo {
     public static void main(String[] args)
             throws IOException, InterruptedException {
