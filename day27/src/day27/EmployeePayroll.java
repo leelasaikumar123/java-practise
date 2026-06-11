@@ -1,5 +1,10 @@
 package day27;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -28,6 +33,33 @@ public void EmpPayRollDataToConsole() {
 	for(EmpPayRollData data: empPayRollList) {
 		System.out.println(data);
 	}
+}
+public void writeEmployeePayrollToFile() {
+	Path path=Paths.get("EmployeePayroll.txt");
+	
+	List<String> employeeData=new ArrayList<>();
+
+	for(EmpPayRollData data:empPayRollList) {
+		employeeData.add(data.toString());
+	}
+
+	try {
+		Files.write(path,employeeData,StandardOpenOption.CREATE,StandardOpenOption.APPEND);
+		System.out.println("Employee Data Written To File Successfully");
+	}
+	catch(IOException e) {
+		e.printStackTrace();
+	}
+}
+public long countEntries() {
+	Path path=Paths.get("EmployeePayroll.txt");
+	try {
+		return Files.lines(path).count();
+	}
+	catch(IOException e) {
+		e.printStackTrace();
+	}
+	return 0;
 }
 }
 class EmpPayRollData{
