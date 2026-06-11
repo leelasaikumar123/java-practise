@@ -5,10 +5,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 class EmployeePayrollTest {
-
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	void readPayRollDataFromConsoleTestAndReadDataToConsoleTest() {
+       EmployeePayroll emp=new EmployeePayroll();
+       emp.readingDataFromConsole();
+       emp.EmpPayRollDataToConsole();
 	}
 
 }
