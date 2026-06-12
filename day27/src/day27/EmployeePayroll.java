@@ -61,6 +61,10 @@ public long countEntries() {
 	}
 	return 0;
 }
+public void printData() throws IOException {
+    Path path = Paths.get("EmployeePayroll.txt");
+    Files.lines(path).forEach(System.out::println);
+}
 }
 class EmpPayRollData{
 	private int id;
@@ -96,7 +100,7 @@ class EmpPayRollData{
 	}
 	@Override	
 	public String toString() {
-		return "id :"+id+" name : "+name+" salary : "+salary;
+		return id+","+name+","+salary;
 	}
 	
 }
